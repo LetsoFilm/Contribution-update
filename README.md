@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>GOBM - Building Fund Progress</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', 'Poppins', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            padding: 24px;
+        }
+
+        /* POSTER CARD */
+        .poster {
+            max-width: 780px;
+            width: 100%;
+            background: linear-gradient(145deg, #fef7e6 0%, #fff4e0 100%);
+            border-radius: 48px 32px 48px 32px;
+            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        /* decorative golden border top */
+        .gold-bar {
+            height: 12px;
+            background: linear-gradient(90deg, #d4af37, #f3e5ab, #b88c2e, #d4af37);
+        }
+
+        /* content padding */
+        .poster-content {
+            padding: 2rem 2rem 2.2rem;
+        }
+
+        /* header section */
+        .verse-tag {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #b88c2e;
+            background: rgba(184, 140, 46, 0.1);
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #1e2a2f;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #7c6b3c;
+            border-left: 4px solid #d4af37;
+            padding-left: 18px;
+            margin-bottom: 28px;
+        }
+
+        .church-name {
+            background: #1e2a2f;
+            color: #f9eec1;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        /* QUOTE */
+        .seed-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            background: #fff9ef;
+            padding: 20px 24px;
+            border-radius: 48px 16px 48px 16px;
+            margin-bottom: 32px;
+            color: #2b3b2c;
+            font-weight: 500;
+            box-shadow: inset 0 1px 4px #ffeecc, 0 8px 12px -8px rgba(0,0,0,0.1);
+            border: 1px solid #f7e5c2;
+        }
+
+        .seed-quote::before {
+            content: "“";
+            font-size: 2rem;
+            color: #d4af37;
+            line-height: 1;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .seed-quote::after {
+            content: "”";
+            font-size: 2rem;
+            color: #d4af37;
+            line-height: 1;
+            vertical-align: bottom;
+            margin-left: 4px;
+        }
+
+        /* PROGRESS SECTION — GRAPH */
+        .progress-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(0px);
+            background: #ffffff;
+            border-radius: 36px;
+            padding: 1.5rem;
+            margin-bottom: 32px;
+            box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.2);
+            border: 1px solid #eeddb0;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            background: #faf6ea;
+            padding: 10px 12px;
+            border-radius: 34px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #7a6a42;
+        }
+
+        .stat-number {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #1e2a2f;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .stat-number small {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .percentage-badge {
+            background: #1e2a2f;
+            color: #f3e0a8;
+            border-radius: 60px;
+            padding: 8px 20px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-align: center;
+            display: inline-block;
+            width: auto;
+        }
+
+        /* PROGRESS BAR (GRAPH VISUAL) */
+        .graph-container {
+            margin: 20px 0 10px;
+        }
+
+        .progress-bar-bg {
+            background-color: #e9e0ce;
+            border-radius: 60px;
+            height: 36px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #c7a43b, #e3c26f, #d6af4b);
+            width: 0%;
+            height: 100%;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 16px;
+            color: #2a2418;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: width 0.6s ease-out;
+            box-shadow: inset 0 0 2px rgba(255,255,200,0.8);
+        }
+
+        .progress-fill span {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(2px);
+            padding: 0 8px;
+            border-radius: 40px;
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-stats-note {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: #5c4e2b;
+        }
+
+        .target-track {
+            font-weight: 700;
+            color: #2f4f36;
+        }
+
+        /* CALL TO ACTION */
+        .cta-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            text-shadow: 0 1px 0 #1e2a2f;
+            background: #1e2a2f;
+            display: inline-block;
+            padding: 6px 28px;
+            border-radius: 60px;
+            margin-bottom: 18px;
+            letter-spacing: -0.2px;
+        }
+
+        .bank-details {
+            background: #1e2a2f;
+            border-radius: 28px;
+            padding: 20px;
+            color: #f5ebd2;
+            margin-bottom: 28px;
+        }
+
+        .bank-name {
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #f7d96b;
+            margin-bottom: 12px;
+        }
+
+        .detail-row {
+            font-size: 1rem;
+            padding: 8px 0;
+            border-bottom: 1px dashed #d4af3744;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            min-width: 100px;
+            color: #eedb9b;
+        }
+
+        .detail-value {
+            font-weight: 500;
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .ref-highlight {
+            background: #00000033;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: 700;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: #fcf3e2;
+            padding: 14px;
+            border-radius: 50px;
+            color: #2d3a3a;
+        }
+
+        .contact a {
+            color: #b0721a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.7rem;
+            color: #a79062;
+            border-top: 1px solid #eedbba;
+            padding-top: 18px;
+        }
+
+        @media (max-width: 550px) {
+            .poster-content {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 2.1rem;
+            }
+            .stat-number {
+                font-size: 1.4rem;
+            }
+            .bank-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .poster {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .progress-fill {
+                background: #c7a43b;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="poster">
+    <div class="gold-bar"></div>
+    <div class="poster-content">
+        <!-- header -->
+        <div class="verse-tag">#BUILDING FOR BREAKTHROUGH</div>
+        <h1>BUILDING<br>FOR BREAKTHROUGH</h1>
+        <div class="subhead">Partner with us — Sowing into a greater shelter</div>
+        <div class="church-name">⚡ GOD OF BREAKTHROUGH TABERNACLE ⚡</div>
+
+        <!-- inspirational quote -->
+        <div class="seed-quote">
+            FROM A SMALL SEED, A GREATER SHELTER IS BUILT.
+        </div>
+
+        <!-- ========== UPDATE GRAPH SECTION (PROGRESS TOWARDS TARGET) ========= -->
+        <div class="progress-card">
+            <div style="text-align: center; margin-bottom: 16px;">
+                <span class="percentage-badge">📈 CHURCH MEMBERS GIVING PROGRESS</span>
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-label">🎯 TOTAL TARGET (MEMBERS)</div>
+                    <div class="stat-number">R59,500</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">💰 RAISED SO FAR</div>
+                    <div class="stat-number">R6,850</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">📊 COMPLETION</div>
+                    <div class="stat-number">11.51%</div>
+                </div>
+            </div>
+
+            <!-- GRAPH : PROGRESS BAR VISUAL -->
+            <div class="graph-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-fill" style="width: 11.51%;">
+                        <span>11.51%</span>
+                    </div>
+                </div>
+                <div class="progress-stats-note">
+                    <span>⛁ Starting point</span>
+                    <span class="target-track">⛭ R52,650 remaining to reach goal</span>
+                </div>
+            </div>
+
+            <!-- brief description of the milestone -->
+            <div style="margin-top: 18px; background: #f9efda; border-radius: 28px; padding: 12px 16px; font-size: 0.85rem; text-align: center; color: #4f3f1c;">
+                ✅ <strong>Faithful step:</strong> R6,850 raised &nbsp;•&nbsp; Next milestone: 20% &nbsp;•&nbsp; keep praying and giving
+            </div>
+        </div>
+
+        <!-- partner call + banking -->
+        <div style="text-align: center;">
+            <div class="cta-title">🤝 PARTNER WITH US</div>
+            <div style="font-size: 1rem; font-weight: 500; margin-bottom: 16px; color: #4d3a1b;">
+                IN AID OF CHURCH BUILDING
+            </div>
+        </div>
+
+        <div class="bank-details">
+            <div class="bank-name">Standard Bank</div>
+            <div class="detail-row">
+                <span class="detail-label">ACC NUMBER:</span>
+                <span class="detail-value">1021 9863 030</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">REFERENCE:</span>
+                <span class="detail-value ref-highlight">BUILDING FUND</span>
+            </div>
+            <div style="font-size: 0.75rem; margin-top: 12px; color: #e2cf9a; text-align: center;">
+                *Offerings from church members only — every seed counts
+            </div>
+        </div>
+
+        <div class="contact">
+            📞 FOR MORE INFO &nbsp;|&nbsp; 
+            <a href="tel:+27704246429">+27 70 424 6429</a>
+        </div>
+
+        <div class="footer-note">
+            “From a small seed, a greater shelter is built.” <br>
+            God of Breakthrough Tabernacle — Building for His Glory ✝️
+        </div>
+    </div>
+    <div class="gold-bar" style="height: 6px;"></div>
+</div>
+
+<!-- optional ensure that fill width matches the 11.51% exactly if any dynamic override needed (no JS needed) -->
+</body>
+</html>
+```
