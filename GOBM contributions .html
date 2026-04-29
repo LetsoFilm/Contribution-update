@@ -493,10 +493,10 @@
             </div>
             <div class="detail-row">
                 <span class="detail-label">REFERENCE:</span>
-                <span class="detail-value ref-highlight" id="reference">BUILDING FUND</span>
+                <span class="detail-value ref-highlight" id="reference">BUILDING FUND/YOUR NAME</span>
             </div>
             <div style="font-size: 0.75rem; margin-top: 12px; color: #e2cf9a; text-align: center;">
-                *Offerings from church members only — every seed counts
+                *Pledged offerings from church members — every seed counts
             </div>
         </div>
 
