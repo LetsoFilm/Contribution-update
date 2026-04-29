@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -429,11 +428,6 @@
 <div class="poster">
     <div class="gold-bar"></div>
     <div class="poster-content">
-        <!-- header -->
-        <div class="verse-tag">#BUILDING FOR BREAKTHROUGH</div>
-        <h1>BUILDING<br>FOR BREAKTHROUGH</h1>
-        <div class="subhead">Partner with us — Sowing into a greater shelter</div>
-
         <!-- inspirational quote -->
         <div class="seed-quote">
             FROM A SMALL SEED, A GREATER SHELTER IS BUILT.
