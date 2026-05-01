@@ -534,7 +534,7 @@
 // Configuration: Update these values to automatically refresh the progress
 const FUND_DATA = {
     target: 60500,
-    raised: 15850,
+    raised: 16150,
     contact: 
         "+27704246429",
     accountNumber: "1021 9863 030",
