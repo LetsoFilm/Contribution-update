@@ -473,7 +473,7 @@
 
             <!-- brief description of the milestone -->
             <div class="milestone-info">
-                ✅ <strong>Faithful step:</strong> <span id="milestone-raised">R8,850</span> raised &nbsp;•&nbsp; Next milestone: 30% &nbsp;•&nbsp; keep praying and giving
+                ✅ <strong>Faithful step:</strong> <span id="milestone-raised">R8,850</span> raised &nbsp;•&nbsp; Next milestone: 40% &nbsp;•&nbsp; keep praying and giving
             </div>
         </div>
 
@@ -533,8 +533,8 @@
 <script>
 // Configuration: Update these values to automatically refresh the progress
 const FUND_DATA = {
-    target: 60500,
-    raised: 17150,
+    target: 61500,
+    raised: 20650,
     contact: 
         "+27704246429",
     accountNumber: "1021 9863 030",
