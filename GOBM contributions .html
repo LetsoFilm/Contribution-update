@@ -3,23 +3,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <meta name="description" content="Church Building Fund Progress Tracker. Partner with us in our church building project.">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#2c3e50">
     <meta property="og:title" content="Building Fund Progress">
     <meta property="og:description" content="Track the progress of our church building fund campaign.">
     <meta property="og:type" content="website">
     
     <title>Building Fund Progress</title>
-    
+
+    <!-- modern fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --gold-primary: #d4af37;
+            --deep: #1e293b;
+            --soft-white: #f8fafc;
+            --card-bg: #ffffff;
+            --gold: #c59b27;
             --gold-light: #f3e5ab;
-            --gold-dark: #b88c2e;
-            --dark-bg: #1a1a1a;
-            --dark-text: #1e2a2f;
-            --light-bg: #fef7e6;
-            --cream: #fff4e0;
-            --white: #ffffff;
+            --gold-dark: #8a6914;
+            --accent: #e2e8f0;
+            --text-secondary: #475569;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-card: 0 20px 35px -15px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.03);
+            --radius-lg: 28px;
+            --radius-xl: 36px;
         }
 
         * {
@@ -29,397 +38,359 @@
         }
 
         body {
-            background: var(--dark-bg);
+            background: linear-gradient(135deg, #f0f4f8 0%, #e6eef5 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Segoe UI', 'Poppins', 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-            padding: clamp(1rem, 5vw, 24px);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            padding: 2rem;
+            line-height: 1.5;
         }
 
-        /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
 
-        /* POSTER CARD */
         .poster {
             max-width: 780px;
             width: 100%;
-            background: linear-gradient(145deg, var(--light-bg) 0%, var(--cream) 100%);
-            border-radius: 48px 32px 48px 32px;
-            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            background: var(--card-bg);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-card);
             overflow: hidden;
-            transition: transform 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.8);
         }
 
-        /* decorative golden border top */
+        /* elegant top accent bar */
         .gold-bar {
-            height: 12px;
-            background: linear-gradient(90deg, var(--gold-primary), var(--gold-light), var(--gold-dark), var(--gold-primary));
+            height: 8px;
+            background: linear-gradient(90deg, var(--gold), #e0c068, var(--gold-dark), #dbb341);
+            opacity: 0.8;
         }
 
-        /* content padding */
         .poster-content {
-            padding: clamp(1.5rem, 4vw, 2rem) 2rem clamp(1.5rem, 4vw, 2.2rem);
+            padding: 2.5rem 2.8rem;
+            position: relative;
         }
 
-        /* header section */
+        /* header */
         .verse-tag {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f1f5f9;
             color: var(--gold-dark);
-            background: rgba(184, 140, 46, 0.1);
-            display: inline-block;
-            padding: 4px 14px;
+            padding: 0.3rem 1.2rem;
             border-radius: 40px;
-            margin-bottom: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.8rem;
+        }
+        .verse-tag::before {
+            content: "⛪";
+            font-size: 1rem;
         }
 
         h1 {
-            font-size: clamp(2rem, 8vw, 3rem);
-            font-weight: 800;
-            line-height: 1.15;
-            color: var(--dark-text);
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 8vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--deep);
+            margin-bottom: 0.7rem;
+            letter-spacing: -0.01em;
         }
 
         .subhead {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: 1.15rem;
+            color: var(--text-secondary);
             font-weight: 500;
-            color: #7c6b3c;
-            border-left: 4px solid var(--gold-primary);
-            padding-left: 18px;
-            margin-bottom: 28px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-
-        .church-name {
-            background: var(--dark-text);
-            color: #f9eec1;
+        .subhead::before {
+            content: "";
             display: inline-block;
-            padding: 8px 20px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-            margin-bottom: 28px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            width: 4px;
+            height: 1.8rem;
+            background: var(--gold);
+            border-radius: 4px;
+            margin-right: 0.7rem;
         }
 
-        /* QUOTE */
+        /* quote */
         .seed-quote {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            background: #faf6ed;
+            border-radius: 28px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
             font-style: italic;
-            background: #fff9ef;
-            padding: 20px 24px;
-            border-radius: 48px 16px 48px 16px;
-            margin-bottom: 32px;
-            color: #2b3b2c;
+            font-size: 1.2rem;
             font-weight: 500;
-            box-shadow: inset 0 1px 4px #ffeecc, 0 8px 12px -8px rgba(0,0,0,0.1);
-            border: 1px solid #f7e5c2;
+            color: #3b4a3b;
+            position: relative;
+            border: 1px solid #f1e4c2;
+            box-shadow: inset 0 1px 6px #fff9eb, 0 6px 10px -6px rgba(0,0,0,0.05);
         }
-
         .seed-quote::before {
             content: """;
-            font-size: 2rem;
-            color: var(--gold-primary);
+            font-size: 3rem;
+            color: var(--gold);
             line-height: 1;
-            margin-right: 6px;
-            vertical-align: middle;
+            position: absolute;
+            top: -10px;
+            left: 15px;
         }
-
         .seed-quote::after {
             content: """;
-            font-size: 2rem;
-            color: var(--gold-primary);
+            font-size: 3rem;
+            color: var(--gold);
             line-height: 1;
-            vertical-align: bottom;
-            margin-left: 4px;
+            position: absolute;
+            bottom: -20px;
+            right: 15px;
         }
 
-        /* PROGRESS SECTION — GRAPH */
+        /* progress card */
         .progress-card {
-            background: var(--white);
-            border-radius: 36px;
-            padding: 1.5rem;
-            margin-bottom: 32px;
-            box-shadow: 0 12px 22px -12px rgba(0, 0, 0, 0.2);
-            border: 1px solid #eeddb0;
+            background: #ffffff;
+            border: 1px solid #e9eef3;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .percentage-badge {
+            background: var(--deep);
+            color: #f1e7c9;
+            padding: 0.5rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 1.8rem;
+            letter-spacing: 0.3px;
         }
 
         .stats-row {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 24px;
+            gap: 1.2rem;
+            margin-bottom: 2.2rem;
         }
 
         .stat-item {
             flex: 1;
-            min-width: 150px;
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 1.2rem 0.5rem;
             text-align: center;
-            background: #faf6ea;
-            padding: 10px 12px;
-            border-radius: 34px;
+            border: 1px solid #eef2f6;
         }
 
         .stat-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 600;
-            color: #7a6a42;
+            font-weight: 700;
+            color: #64748b;
+            margin-bottom: 0.4rem;
         }
 
         .stat-number {
-            font-size: clamp(1.3rem, 4vw, 1.9rem);
+            font-size: 1.8rem;
             font-weight: 800;
-            color: var(--dark-text);
-            line-height: 1.2;
-            word-break: break-word;
+            color: var(--deep);
+            letter-spacing: -0.5px;
         }
 
-        .stat-number small {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .percentage-badge {
-            background: var(--dark-text);
-            color: #f3e0a8;
-            border-radius: 60px;
-            padding: 8px 20px;
-            font-weight: 700;
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            text-align: center;
-            display: inline-block;
-            width: auto;
-        }
-
-        /* PROGRESS BAR (GRAPH VISUAL) */
+        /* progress bar */
         .graph-container {
-            margin: 20px 0 10px;
+            margin: 1.2rem 0 1rem;
         }
 
         .progress-bar-bg {
-            background-color: #e9e0ce;
-            border-radius: 60px;
-            height: 36px;
+            background: #eaf0f6;
+            border-radius: 100px;
+            height: 32px;
             overflow: hidden;
-            box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.08);
         }
 
         .progress-fill {
-            /* background will be set dynamically via JS */
+            /* colours set dynamically */
             width: 0%;
             height: 100%;
-            border-radius: 60px;
+            border-radius: 100px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding-right: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: width 0.6s ease-out, background 0.4s;
-            box-shadow: inset 0 0 2px rgba(255,255,200,0.8);
+            padding-right: 18px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+            box-shadow: 0 0 8px rgba(0,0,0,0.15) inset;
         }
 
         .progress-fill span {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(2px);
-            padding: 0 8px;
-            border-radius: 40px;
-            color: white;
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
+            background: rgba(255,255,255,0.85);
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.4px;
+            color: #1e293b;
         }
 
         .progress-stats-note {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
             font-weight: 500;
-            font-size: 0.8rem;
-            color: #5c4e2b;
-        }
-
-        .target-track {
-            font-weight: 700;
-            color: #2f4f36;
+            color: #526477;
         }
 
         .milestone-info {
-            margin-top: 18px;
-            background: #f9efda;
-            border-radius: 28px;
-            padding: 12px 16px;
-            font-size: 0.85rem;
-            text-align: center;
-            color: #4f3f1c;
+            margin-top: 1.5rem;
+            background: #f1f8f1;
+            border-left: 5px solid var(--gold);
+            padding: 1rem 1.4rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #2d472d;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .milestone-info strong {
+            color: #1e4620;
+        }
+        .milestone-badge {
+            background: white;
+            border: 1px solid var(--gold);
+            color: var(--gold-dark);
+            font-weight: 700;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
         }
 
-        /* CALL TO ACTION */
+        /* call to action */
+        .cta-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
         .cta-title {
-            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: var(--gold-primary);
-            text-shadow: 0 1px 0 var(--dark-text);
-            background: var(--dark-text);
+            color: var(--deep);
+            background: linear-gradient(to right, #f9f3e0, #fff6eb);
             display: inline-block;
-            padding: 6px 28px;
+            padding: 0.5rem 2.2rem;
             border-radius: 60px;
-            margin-bottom: 18px;
-            letter-spacing: -0.2px;
+            margin-bottom: 0.8rem;
+            border: 1px solid #f3e3b8;
         }
 
         .bank-details {
-            background: var(--dark-text);
+            background: var(--deep);
             border-radius: 28px;
-            padding: 20px;
-            color: #f5ebd2;
-            margin-bottom: 28px;
+            padding: 2rem;
+            color: #ecdfbb;
+            margin-bottom: 2rem;
         }
 
         .bank-name {
-            font-size: clamp(1.3rem, 4vw, 1.7rem);
+            font-size: 1.8rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            color: #f7d96b;
-            margin-bottom: 12px;
+            color: #f5d772;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.3px;
         }
 
         .detail-row {
-            font-size: 1rem;
-            padding: 8px 0;
-            border-bottom: 1px dashed #d4af3744;
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 0.5rem;
+            padding: 0.7rem 0;
+            border-bottom: 1px dashed #616e7c;
         }
 
         .detail-label {
-            font-weight: 600;
-            min-width: 100px;
-            color: #eedb9b;
+            font-weight: 700;
+            min-width: 120px;
+            color: #cbd5e1;
         }
 
         .detail-value {
+            font-family: 'Fira Code', 'Courier New', monospace;
             font-weight: 500;
-            font-family: monospace;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
         }
 
         .ref-highlight {
-            background: #00000033;
-            padding: 4px 12px;
-            border-radius: 40px;
+            background: rgba(255,255,255,0.08);
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
             font-weight: 700;
         }
 
         .contact {
             text-align: center;
-            margin-top: 18px;
-            font-size: 1rem;
+            background: #f1f5f9;
+            padding: 1.2rem;
+            border-radius: 60px;
             font-weight: 500;
-            background: #fcf3e2;
-            padding: 14px;
-            border-radius: 50px;
-            color: #2d3a3a;
+            color: #1e293b;
         }
 
         .contact a {
             color: #b0721a;
-            text-decoration: none;
             font-weight: 700;
-            transition: opacity 0.2s ease;
+            text-decoration: none;
+            transition: opacity 0.2s;
         }
 
-        .contact a:hover,
-        .contact a:focus {
+        .contact a:hover {
             opacity: 0.8;
-            outline: 2px solid #b0721a;
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        .contact a:focus {
-            outline: 2px solid #b0721a;
         }
 
         .footer-note {
             text-align: center;
-            margin-top: 24px;
-            font-size: 0.7rem;
-            color: #a79062;
-            border-top: 1px solid #eedbba;
-            padding-top: 18px;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #8897a8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.5rem;
         }
 
         @media (max-width: 768px) {
             .poster-content {
-                padding: 1.5rem;
+                padding: 1.8rem 1.5rem;
             }
             .stats-row {
                 flex-direction: column;
             }
-            .stat-item {
-                min-width: auto;
-            }
-            .progress-stats-note {
-                flex-direction: column;
-                gap: 8px;
-            }
         }
-
-        @media (max-width: 550px) {
+        @media (max-width: 500px) {
             .poster-content {
-                padding: 1rem;
+                padding: 1.2rem;
             }
             h1 {
-                font-size: 1.8rem;
-            }
-            .stat-number {
-                font-size: 1.3rem;
-            }
-            .bank-name {
-                font-size: 1.2rem;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .poster {
-                box-shadow: none;
-                max-width: 100%;
-            }
-            .progress-fill {
-                background: var(--gold-dark);
+                font-size: 2rem;
             }
         }
     </style>
@@ -428,37 +399,34 @@
 <div class="poster">
     <div class="gold-bar"></div>
     <div class="poster-content">
-        <!-- header -->
-        <div class="verse-tag">#BUILDING FOR BREAKTHROUGH</div>
+        <div class="verse-tag">Building for Breakthrough</div>
         <h1>BUILDING<br>FOR BREAKTHROUGH</h1>
         <div class="subhead">Partner with us — Sowing into a greater shelter</div>
 
-        <!-- inspirational quote -->
         <div class="seed-quote">
-            FROM A SMALL SEED, A GREATER SHELTER IS BUILT.
+            From a small seed, a greater shelter is built.
         </div>
 
-        <!-- ========== UPDATE GRAPH SECTION (PROGRESS TOWARDS TARGET) ========= -->
+        <!-- PROGRESS CARD -->
         <div class="progress-card">
-            <div style="text-align: center; margin-bottom: 16px;">
+            <div style="text-align: center;">
                 <span class="percentage-badge">📈 MEMBERS GIVING PROGRESS</span>
             </div>
             <div class="stats-row">
                 <div class="stat-item">
-                    <div class="stat-label">🎯 TOTAL TARGET (MEMBERS)</div>
+                    <div class="stat-label">🎯 Total Target (Members)</div>
                     <div class="stat-number" id="target-amount">R59,500</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">💰 RAISED SO FAR</div>
+                    <div class="stat-label">💰 Raised So Far</div>
                     <div class="stat-number" id="raised-amount">R8,850</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">📊 COMPLETION</div>
+                    <div class="stat-label">📊 Completion</div>
                     <div class="stat-number" id="completion-percent">14.87%</div>
                 </div>
             </div>
 
-            <!-- GRAPH : PROGRESS BAR VISUAL -->
             <div class="graph-container">
                 <div class="progress-bar-bg">
                     <div class="progress-fill" id="progress-bar" style="width: 14.87%;">
@@ -467,22 +435,21 @@
                 </div>
                 <div class="progress-stats-note">
                     <span>⛁ Starting point</span>
-                    <span class="target-track" id="remaining-text">⛭ R50,650 remaining to reach goal</span>
+                    <span id="remaining-text" style="font-weight:700;">⛭ R50,650 remaining</span>
                 </div>
             </div>
 
-            <!-- brief description of the milestone -->
-            <div class="milestone-info">
-                ✅ <strong>Faithful step:</strong> <span id="milestone-raised">R8,850</span> raised &nbsp;•&nbsp; Next milestone: 40% &nbsp;•&nbsp; keep praying and giving
+            <div class="milestone-info" id="milestone-box">
+                ✅ <strong>Faithful step:</strong> <span id="milestone-raised">R8,850</span> raised 
+                &nbsp;•&nbsp; <span class="milestone-badge" id="next-milestone">Next: 40%</span> 
+                &nbsp;•&nbsp; keep praying and giving
             </div>
         </div>
 
-        <!-- partner call + banking -->
-        <div style="text-align: center;">
+        <!-- partner CTA -->
+        <div class="cta-section">
             <div class="cta-title">🤝 PARTNER WITH US</div>
-            <div style="font-size: 1rem; font-weight: 500; margin-bottom: 16px; color: #4d3a1b;">
-                IN AID OF CHURCH BUILDING
-            </div>
+            <div style="font-weight:500; color:#475569;">IN AID OF CHURCH BUILDING</div>
         </div>
 
         <div class="bank-details">
@@ -495,14 +462,14 @@
                 <span class="detail-label">REFERENCE:</span>
                 <span class="detail-value ref-highlight" id="reference">BUILDING FUND/YOUR NAME</span>
             </div>
-            <div style="font-size: 0.75rem; margin-top: 12px; color: #e2cf9a; text-align: center;">
+            <div style="font-size:0.75rem; margin-top:1rem; color:#cccbb5; text-align:center;">
                 *Pledged offerings from church members — every seed counts
             </div>
         </div>
 
         <div class="contact">
             📞 FOR MORE INFO &nbsp;|&nbsp; 
-            <a href="tel:+27704246429" aria-label="Call us at +27 70 424 6429">+27 70 424 6429</a>
+            <a href="tel:+27704246429">+27 70 424 6429</a>
         </div>
 
         <div class="footer-note">
@@ -510,10 +477,9 @@
             Building for His Glory ✝️
         </div>
     </div>
-    <div class="gold-bar" style="height: 6px;"></div>
+    <div class="gold-bar" style="height:5px;"></div>
 </div>
 
-<!-- Rich schema markup for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -529,86 +495,78 @@
 }
 </script>
 
-<!-- Dynamic Progress Update Script -->
 <script>
-// *********************************************************
-// CONFIGURATION: Update these values to reflect the latest
-// contributions. The progress bar will change colour
-// automatically:
-//   0-30%   → red
-//   30-60%  → orange
-//   60-90%  → yellow
-//   90-100% → green
-// *********************************************************
+// *************************************************************
+//   UPDATE THESE VALUES TO REFLECT THE LATEST CONTRIBUTIONS
+// *************************************************************
 const FUND_DATA = {
-    target: 62500,          // total target in Rands
-    raised: 23150,          // total raised so far in Rands
+    target: 62500,                // total goal in Rands
+    raised: 23150,               // current amount raised
     contact: "+27704246429",
     accountNumber: "1021 9863 030",
-    reference: "BUILDING FUND"
+    reference: "BUILDING FUND",
+    milestones: [20, 40, 60, 80, 100]   // percentage milestones (will auto‑detect next)
 };
 
-/**
- * Formats currency to South African Rand format
- * @param {number} amount 
- * @returns {string}
- */
 function formatCurrency(amount) {
     return `R${amount.toLocaleString('en-ZA', { maximumFractionDigits: 0 })}`;
 }
 
-/**
- * Returns background colour and text colour based on percentage
- * to make the progress bar colour-coded.
- */
 function getProgressColors(percentage) {
-    if (percentage <= 30) {
-        return { background: '#dc3545', text: '#ffffff' }; // red
-    } else if (percentage <= 60) {
-        return { background: '#fd7e14', text: '#ffffff' }; // orange
-    } else if (percentage <= 90) {
-        return { background: '#ffc107', text: '#212529' }; // yellow (dark text for readability)
-    } else {
-        return { background: '#28a745', text: '#ffffff' }; // green
-    }
+    if (percentage <= 30) return { bg: '#dc3545', text: '#ffffff' };      // red
+    if (percentage <= 60) return { bg: '#fd7e14', text: '#ffffff' };      // orange
+    if (percentage <= 90) return { bg: '#ffc107', text: '#1e293b' };      // yellow
+    return { bg: '#28a745', text: '#ffffff' };                            // green
 }
 
-/**
- * Calculates and updates all progress elements on the page
- */
+function getNextMilestone(percentage, milestones) {
+    // find the first milestone that is greater than current percentage
+    const sorted = milestones.slice().sort((a,b) => a - b);
+    for (let m of sorted) {
+        if (m > percentage) return m;
+    }
+    return null; // already reached the final milestone (100% or beyond)
+}
+
 function updateProgress() {
-    const percentage = ((FUND_DATA.raised / FUND_DATA.target) * 100).toFixed(2);
+    const percentage = (FUND_DATA.raised / FUND_DATA.target) * 100;
+    const percRounded = percentage.toFixed(2);
     const remaining = FUND_DATA.target - FUND_DATA.raised;
+    const colors = getProgressColors(percentage);
 
-    // Get the colour scheme for the current percentage
-    const colors = getProgressColors(parseFloat(percentage));
-
-    // Update DOM elements with calculated values
+    // update numeric elements
     document.getElementById('target-amount').textContent = formatCurrency(FUND_DATA.target);
     document.getElementById('raised-amount').textContent = formatCurrency(FUND_DATA.raised);
-    document.getElementById('completion-percent').textContent = `${percentage}%`;
-    document.getElementById('remaining-text').textContent = `⛭ ${formatCurrency(remaining)} remaining to reach goal`;
+    document.getElementById('completion-percent').textContent = `${percRounded}%`;
+    document.getElementById('remaining-text').innerHTML = `⛭ ${formatCurrency(remaining)} remaining`;
     document.getElementById('milestone-raised').textContent = formatCurrency(FUND_DATA.raised);
     document.getElementById('account-number').textContent = FUND_DATA.accountNumber;
     document.getElementById('reference').textContent = FUND_DATA.reference;
 
-    // Progress bar visual update
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
+    // progress bar
+    const bar = document.getElementById('progress-bar');
+    const barText = document.getElementById('progress-text');
+    bar.style.width = `${percRounded}%`;
+    bar.style.background = colors.bg;
+    bar.style.color = colors.text;
+    barText.textContent = `${percRounded}%`;
 
-    progressBar.style.width = `${percentage}%`;
-    progressBar.style.background = colors.background;            // apply colour
-    progressText.textContent = `${percentage}%`;
-    progressText.style.color = colors.text;                      // ensure readability
+    // next milestone auto‑update
+    const next = getNextMilestone(percentage, FUND_DATA.milestones);
+    const milestoneEl = document.getElementById('next-milestone');
+    if (next !== null) {
+        milestoneEl.textContent = `Next: ${next}%`;
+    } else {
+        milestoneEl.textContent = 'Goal reached! 🎉';
+    }
 
-    // Keep the span background semi-transparent dark for contrast,
-    // but override its text colour if needed.
-    // The span already has a dark background; adjusting text colour is enough.
-    // We'll also set the progressBar's overall colour for the text inside.
-    progressBar.style.color = colors.text;
+    // if 100% or more, change the milestone box text
+    if (percentage >= 100) {
+        document.getElementById('milestone-box').innerHTML = 
+            `🎉 <strong>Praise God!</strong> We have reached our building fund target! Thank you for every seed sown.`;
+    }
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', updateProgress);
 </script>
 </body>
