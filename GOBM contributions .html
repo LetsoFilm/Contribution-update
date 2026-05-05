@@ -220,7 +220,7 @@
         }
 
         .progress-fill {
-            background: linear-gradient(90deg, #c7a43b, #e3c26f, #d6af4b);
+            /* background will be set dynamically via JS */
             width: 0%;
             height: 100%;
             border-radius: 60px;
@@ -228,10 +228,10 @@
             align-items: center;
             justify-content: flex-end;
             padding-right: 16px;
-            color: #2a2418;
+            color: white;
             font-weight: bold;
             font-size: 0.9rem;
-            transition: width 0.6s ease-out;
+            transition: width 0.6s ease-out, background 0.4s;
             box-shadow: inset 0 0 2px rgba(255,255,200,0.8);
         }
 
@@ -531,12 +531,19 @@
 
 <!-- Dynamic Progress Update Script -->
 <script>
-// Configuration: Update these values to automatically refresh the progress
+// *********************************************************
+// CONFIGURATION: Update these values to reflect the latest
+// contributions. The progress bar will change colour
+// automatically:
+//   0-30%   → red
+//   30-60%  → orange
+//   60-90%  → yellow
+//   90-100% → green
+// *********************************************************
 const FUND_DATA = {
-    target: 62500,
-    raised: 23150,
-    contact: 
-        "+27704246429",
+    target: 62500,          // total target in Rands
+    raised: 23150,          // total raised so far in Rands
+    contact: "+27704246429",
     accountNumber: "1021 9863 030",
     reference: "BUILDING FUND"
 };
@@ -551,38 +558,58 @@ function formatCurrency(amount) {
 }
 
 /**
- * Calculates and updates progress
+ * Returns background colour and text colour based on percentage
+ * to make the progress bar colour-coded.
+ */
+function getProgressColors(percentage) {
+    if (percentage <= 30) {
+        return { background: '#dc3545', text: '#ffffff' }; // red
+    } else if (percentage <= 60) {
+        return { background: '#fd7e14', text: '#ffffff' }; // orange
+    } else if (percentage <= 90) {
+        return { background: '#ffc107', text: '#212529' }; // yellow (dark text for readability)
+    } else {
+        return { background: '#28a745', text: '#ffffff' }; // green
+    }
+}
+
+/**
+ * Calculates and updates all progress elements on the page
  */
 function updateProgress() {
     const percentage = ((FUND_DATA.raised / FUND_DATA.target) * 100).toFixed(2);
     const remaining = FUND_DATA.target - FUND_DATA.raised;
 
+    // Get the colour scheme for the current percentage
+    const colors = getProgressColors(parseFloat(percentage));
+
     // Update DOM elements with calculated values
     document.getElementById('target-amount').textContent = formatCurrency(FUND_DATA.target);
     document.getElementById('raised-amount').textContent = formatCurrency(FUND_DATA.raised);
     document.getElementById('completion-percent').textContent = `${percentage}%`;
-    document.getElementById('progress-bar').style.width = `${percentage}%`;
-    document.getElementById('progress-text').textContent = `${percentage}%`;
     document.getElementById('remaining-text').textContent = `⛭ ${formatCurrency(remaining)} remaining to reach goal`;
     document.getElementById('milestone-raised').textContent = formatCurrency(FUND_DATA.raised);
     document.getElementById('account-number').textContent = FUND_DATA.accountNumber;
     document.getElementById('reference').textContent = FUND_DATA.reference;
+
+    // Progress bar visual update
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+
+    progressBar.style.width = `${percentage}%`;
+    progressBar.style.background = colors.background;            // apply colour
+    progressText.textContent = `${percentage}%`;
+    progressText.style.color = colors.text;                      // ensure readability
+
+    // Keep the span background semi-transparent dark for contrast,
+    // but override its text colour if needed.
+    // The span already has a dark background; adjusting text colour is enough.
+    // We'll also set the progressBar's overall colour for the text inside.
+    progressBar.style.color = colors.text;
 }
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', updateProgress);
-
-/**
- * Optional: Fetch data from external JSON file
- * Uncomment to use: Create a 'data.json' file in the same directory
- */
-// fetch('data.json')
-//     .then(response => response.json())
-//     .then(data => {
-//         Object.assign(FUND_DATA, data);
-//         updateProgress();
-//     })
-//     .catch(error => console.log('Using default data:', error));
 </script>
 </body>
 </html>
