@@ -533,7 +533,7 @@
 <script>
 // Configuration: Update these values to automatically refresh the progress
 const FUND_DATA = {
-    target: 61500,
+    target: 62500,
     raised: 23150,
     contact: 
         "+27704246429",
