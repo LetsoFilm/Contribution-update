@@ -501,7 +501,7 @@
 // *************************************************************
 const FUND_DATA = {
     target: 62500,                // total goal in Rands
-    raised: 25150,               // current amount raised
+    raised: 26150,               // current amount raised
     contact: "+27704246429",
     accountNumber: "1021 9863 030",
     reference: "BUILDING FUND",
