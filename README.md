@@ -578,7 +578,7 @@
     //   UPDATE THESE VALUES TO REFLECT THE LATEST CONTRIBUTIONS
     // *************************************************************
     const FUND_DATA = {
-        target: 59500,                // members pledged target
+        target: 64500,                // members pledged target
         raised: 40000,                // members pledged raised so far
         contact: "+27704246429",
         accountNumber: "1021 9863 030",
