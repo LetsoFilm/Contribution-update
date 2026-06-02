@@ -590,8 +590,8 @@
     const CHALLENGE_DATA = {
         target: 20000,       // combined target for JJ & JD
         raised: 7500,        // current combined raised (JD+JJ)
-        jd: 4500,            // JD group raised
-        jj: 3000             // JJ group raised
+        jd: 4000,            // JD group raised
+        jj: 3500             // JJ group raised
     };
 
     function formatCurrency(amount) {
