@@ -500,7 +500,7 @@
 //   UPDATE THESE VALUES TO REFLECT THE LATEST CONTRIBUTIONS
 // *************************************************************
 const FUND_DATA = {
-    target: 63500,                // total goal in Rands
+    target: 64500,                // total goal in Rands
     raised: 40000,               // current amount raised
     contact: "+27704246429",
     accountNumber: "1021 9863 030",
