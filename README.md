@@ -7,10 +7,9 @@
     <meta property="og:title" content="Building Fund Progress">
     <meta property="og:description" content="Track the progress of our church building fund campaign.">
     <meta property="og:type" content="website">
-    
+
     <title>Building Fund Progress</title>
 
-    <!-- modern fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
@@ -65,7 +64,6 @@
             border: 1px solid rgba(255,255,255,0.8);
         }
 
-        /* elegant top accent bar */
         .gold-bar {
             height: 8px;
             background: linear-gradient(90deg, var(--gold), #e0c068, var(--gold-dark), #dbb341);
@@ -77,7 +75,6 @@
             position: relative;
         }
 
-        /* header */
         .verse-tag {
             display: inline-flex;
             align-items: center;
@@ -126,7 +123,6 @@
             margin-right: 0.7rem;
         }
 
-        /* quote */
         .seed-quote {
             background: #faf6ed;
             border-radius: 28px;
@@ -159,8 +155,7 @@
             right: 15px;
         }
 
-        /* progress card */
-        .progress-card {
+        .progress-card, .challenge-card {
             background: #ffffff;
             border: 1px solid #e9eef3;
             border-radius: var(--radius-lg);
@@ -213,7 +208,6 @@
             letter-spacing: -0.5px;
         }
 
-        /* progress bar */
         .graph-container {
             margin: 1.2rem 0 1rem;
         }
@@ -227,7 +221,6 @@
         }
 
         .progress-fill {
-            /* colours set dynamically */
             width: 0%;
             height: 100%;
             border-radius: 100px;
@@ -287,7 +280,6 @@
             font-size: 0.8rem;
         }
 
-        /* call to action */
         .cta-section {
             text-align: center;
             margin-bottom: 2rem;
@@ -377,6 +369,39 @@
             padding-top: 1.5rem;
         }
 
+        /* pie chart and legend */
+        .pie-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .pie-chart-svg {
+            width: 200px;
+            height: 200px;
+            max-width: 100%;
+            margin-bottom: 1rem;
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 4px;
+        }
+
         @media (max-width: 768px) {
             .poster-content {
                 padding: 1.8rem 1.5rem;
@@ -407,7 +432,7 @@
             From a small seed, a greater shelter is built.
         </div>
 
-        <!-- PROGRESS CARD -->
+        <!-- PROGRESS CARD – MEMBER PLEDGES (unchanged) -->
         <div class="progress-card">
             <div style="text-align: center;">
                 <span class="percentage-badge">📈 MEMBERS GIVING PROGRESS</span>
@@ -440,13 +465,66 @@
             </div>
 
             <div class="milestone-info" id="milestone-box">
-                ✅ <strong>Faithful step:</strong> <span id="milestone-raised">R8,850</span> raised 
-                &nbsp;•&nbsp; <span class="milestone-badge" id="next-milestone">Next: 40%</span> 
+                ✅ <strong>Faithful step:</strong> <span id="milestone-raised">R8,850</span> raised
+                &nbsp;•&nbsp; <span class="milestone-badge" id="next-milestone">Next: 20%</span>
                 &nbsp;•&nbsp; keep praying and giving
             </div>
         </div>
 
-        <!-- partner CTA -->
+        <!-- NEW SECTION: JJ & JD CHALLENGE -->
+        <div class="challenge-card" id="challenge-card">
+            <div style="text-align: center;">
+                <span class="percentage-badge" style="background:#2d472d;">🔥 JJ & JD CHALLENGE</span>
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-label">🌟 JD Group (Jul–Dec)</div>
+                    <div class="stat-number" id="jd-amount">R4,500</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">🌟 JJ Group (Jan–Jun)</div>
+                    <div class="stat-number" id="jj-amount">R3,000</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">💰 Combined Raised</div>
+                    <div class="stat-number" id="challenge-raised">R7,500</div>
+                </div>
+            </div>
+
+            <div class="graph-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-fill" id="challenge-progress-bar" style="width: 25%;">
+                        <span id="challenge-progress-text">25%</span>
+                    </div>
+                </div>
+                <div class="progress-stats-note">
+                    <span>🎯 Combined Target: <strong id="challenge-target">R30,000</strong></span>
+                    <span id="challenge-remaining-text" style="font-weight:700;">⛭ R22,500 to go</span>
+                </div>
+            </div>
+
+            <!-- Pie chart showing TOTAL raised from all sources -->
+            <div class="pie-chart-container">
+                <div style="font-weight:700; color:#1e293b; margin-bottom:0.5rem;">TOTAL RAISED SO FAR</div>
+                <svg viewBox="0 0 200 200" class="pie-chart-svg" aria-label="Pie chart of total raised funds">
+                    <circle cx="100" cy="100" r="80" fill="#f0f4f8" />
+                    <!-- slices will be drawn by JavaScript -->
+                    <path id="slice-members" fill="#c59b27" d="" />
+                    <path id="slice-jd" fill="#4a90e2" d="" />
+                    <path id="slice-jj" fill="#2a9d8f" d="" />
+                    <circle cx="100" cy="100" r="45" fill="white" />
+                    <text x="100" y="96" text-anchor="middle" font-weight="800" font-size="14" fill="#1e293b">TOTAL</text>
+                    <text x="100" y="114" text-anchor="middle" font-weight="700" font-size="14" fill="#c59b27" id="pie-total-text">R16,350</text>
+                </svg>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-color" style="background:#c59b27;"></span> Pledged Members</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#4a90e2;"></span> JD Group</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#2a9d8f;"></span> JJ Group</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- partner CTA (unchanged) -->
         <div class="cta-section">
             <div class="cta-title">🤝 PARTNER WITH US</div>
             <div style="font-weight:500; color:#475569;">IN AID OF CHURCH BUILDING</div>
@@ -468,7 +546,7 @@
         </div>
 
         <div class="contact">
-            📞 FOR MORE INFO &nbsp;|&nbsp; 
+            📞 FOR MORE INFO &nbsp;|&nbsp;
             <a href="tel:+27704246429">+27 70 424 6429</a>
         </div>
 
@@ -496,78 +574,144 @@
 </script>
 
 <script>
-// *************************************************************
-//   UPDATE THESE VALUES TO REFLECT THE LATEST CONTRIBUTIONS
-// *************************************************************
-const FUND_DATA = {
-    target: 64500,                // total goal in Rands
-    raised: 40000,               // current amount raised
-    contact: "+27704246429",
-    accountNumber: "1021 9863 030",
-    reference: "BUILDING FUND",
-    milestones: [20, 40, 60, 80, 100]   // percentage milestones (will auto‑detect next)
-};
+    // *************************************************************
+    //   UPDATE THESE VALUES TO REFLECT THE LATEST CONTRIBUTIONS
+    // *************************************************************
+    const FUND_DATA = {
+        target: 59500,                // members pledged target
+        raised: 40000,                // members pledged raised so far
+        contact: "+27704246429",
+        accountNumber: "1021 9863 030",
+        reference: "BUILDING FUND",
+        milestones: [20, 40, 60, 80, 100]   // percentage milestones
+    };
 
-function formatCurrency(amount) {
-    return `R${amount.toLocaleString('en-ZA', { maximumFractionDigits: 0 })}`;
-}
+    // New data for JJ & JD challenge
+    const CHALLENGE_DATA = {
+        target: 20000,       // combined target for JJ & JD
+        raised: 7500,        // current combined raised (JD+JJ)
+        jd: 4500,            // JD group raised
+        jj: 3000             // JJ group raised
+    };
 
-function getProgressColors(percentage) {
-    if (percentage <= 30) return { bg: '#dc3545', text: '#ffffff' };      // red
-    if (percentage <= 60) return { bg: '#fd7e14', text: '#ffffff' };      // orange
-    if (percentage <= 90) return { bg: '#ffc107', text: '#1e293b' };      // yellow
-    return { bg: '#28a745', text: '#ffffff' };                            // green
-}
-
-function getNextMilestone(percentage, milestones) {
-    // find the first milestone that is greater than current percentage
-    const sorted = milestones.slice().sort((a,b) => a - b);
-    for (let m of sorted) {
-        if (m > percentage) return m;
-    }
-    return null; // already reached the final milestone (100% or beyond)
-}
-
-function updateProgress() {
-    const percentage = (FUND_DATA.raised / FUND_DATA.target) * 100;
-    const percRounded = percentage.toFixed(2);
-    const remaining = FUND_DATA.target - FUND_DATA.raised;
-    const colors = getProgressColors(percentage);
-
-    // update numeric elements
-    document.getElementById('target-amount').textContent = formatCurrency(FUND_DATA.target);
-    document.getElementById('raised-amount').textContent = formatCurrency(FUND_DATA.raised);
-    document.getElementById('completion-percent').textContent = `${percRounded}%`;
-    document.getElementById('remaining-text').innerHTML = `⛭ ${formatCurrency(remaining)} remaining`;
-    document.getElementById('milestone-raised').textContent = formatCurrency(FUND_DATA.raised);
-    document.getElementById('account-number').textContent = FUND_DATA.accountNumber;
-    document.getElementById('reference').textContent = FUND_DATA.reference;
-
-    // progress bar
-    const bar = document.getElementById('progress-bar');
-    const barText = document.getElementById('progress-text');
-    bar.style.width = `${percRounded}%`;
-    bar.style.background = colors.bg;
-    bar.style.color = colors.text;
-    barText.textContent = `${percRounded}%`;
-
-    // next milestone auto‑update
-    const next = getNextMilestone(percentage, FUND_DATA.milestones);
-    const milestoneEl = document.getElementById('next-milestone');
-    if (next !== null) {
-        milestoneEl.textContent = `Next: ${next}%`;
-    } else {
-        milestoneEl.textContent = 'Goal reached! 🎉';
+    function formatCurrency(amount) {
+        return `R${amount.toLocaleString('en-ZA', { maximumFractionDigits: 0 })}`;
     }
 
-    // if 100% or more, change the milestone box text
-    if (percentage >= 100) {
-        document.getElementById('milestone-box').innerHTML = 
-            `🎉 <strong>Praise God!</strong> We have reached our building fund target! Thank you for every seed sown.`;
+    function getProgressColors(percentage) {
+        if (percentage <= 30) return { bg: '#dc3545', text: '#ffffff' };
+        if (percentage <= 60) return { bg: '#fd7e14', text: '#ffffff' };
+        if (percentage <= 90) return { bg: '#ffc107', text: '#1e293b' };
+        return { bg: '#28a745', text: '#ffffff' };
     }
-}
 
-document.addEventListener('DOMContentLoaded', updateProgress);
+    function getNextMilestone(percentage, milestones) {
+        const sorted = milestones.slice().sort((a,b) => a - b);
+        for (let m of sorted) {
+            if (m > percentage) return m;
+        }
+        return null;
+    }
+
+    // Draw pie chart slices using SVG arcs
+    function updatePieChart(membersRaised, jdRaised, jjRaised) {
+        const total = membersRaised + jdRaised + jjRaised;
+        if (total === 0) return;
+
+        const angle = (value) => (value / total) * 360;
+        let startAngle = 0;
+
+        const sliceMembers = angle(membersRaised);
+        const sliceJD = angle(jdRaised);
+        const sliceJJ = angle(jjRaised);
+
+        const slices = [
+            { id: 'slice-members', value: membersRaised, color: '#c59b27', start: 0, end: sliceMembers },
+            { id: 'slice-jd', value: jdRaised, color: '#4a90e2', start: sliceMembers, end: sliceMembers + sliceJD },
+            { id: 'slice-jj', value: jjRaised, color: '#2a9d8f', start: sliceMembers + sliceJD, end: sliceMembers + sliceJD + sliceJJ }
+        ];
+
+        function describeArc(cx, cy, r, startAngle, endAngle) {
+            const startRad = (startAngle - 90) * Math.PI / 180;
+            const endRad = (endAngle - 90) * Math.PI / 180;
+            const x1 = cx + r * Math.cos(startRad);
+            const y1 = cy + r * Math.sin(startRad);
+            const x2 = cx + r * Math.cos(endRad);
+            const y2 = cy + r * Math.sin(endRad);
+            const largeArc = (endAngle - startAngle) > 180 ? 1 : 0;
+            return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+        }
+
+        slices.forEach(s => {
+            const path = document.getElementById(s.id);
+            if (path) {
+                path.setAttribute('d', describeArc(100, 100, 80, s.start, s.end));
+                path.setAttribute('fill', s.color);
+            }
+        });
+
+        document.getElementById('pie-total-text').textContent = formatCurrency(total);
+    }
+
+    function updateProgress() {
+        // ----- members section (unchanged logic) -----
+        const membersPerc = (FUND_DATA.raised / FUND_DATA.target) * 100;
+        const percRounded = membersPerc.toFixed(2);
+        const remaining = FUND_DATA.target - FUND_DATA.raised;
+        const colors = getProgressColors(membersPerc);
+
+        document.getElementById('target-amount').textContent = formatCurrency(FUND_DATA.target);
+        document.getElementById('raised-amount').textContent = formatCurrency(FUND_DATA.raised);
+        document.getElementById('completion-percent').textContent = `${percRounded}%`;
+        document.getElementById('remaining-text').innerHTML = `⛭ ${formatCurrency(remaining)} remaining`;
+        document.getElementById('milestone-raised').textContent = formatCurrency(FUND_DATA.raised);
+        document.getElementById('account-number').textContent = FUND_DATA.accountNumber;
+        document.getElementById('reference').textContent = FUND_DATA.reference;
+
+        const bar = document.getElementById('progress-bar');
+        const barText = document.getElementById('progress-text');
+        bar.style.width = `${percRounded}%`;
+        bar.style.background = colors.bg;
+        bar.style.color = colors.text;
+        barText.textContent = `${percRounded}%`;
+
+        const next = getNextMilestone(membersPerc, FUND_DATA.milestones);
+        const milestoneEl = document.getElementById('next-milestone');
+        if (next !== null) {
+            milestoneEl.textContent = `Next: ${next}%`;
+        } else {
+            milestoneEl.textContent = 'Goal reached! 🎉';
+        }
+
+        if (membersPerc >= 100) {
+            document.getElementById('milestone-box').innerHTML =
+                `🎉 <strong>Praise God!</strong> We have reached our building fund target! Thank you for every seed sown.`;
+        }
+
+        // ----- JJ & JD challenge section -----
+        const challengePerc = (CHALLENGE_DATA.raised / CHALLENGE_DATA.target) * 100;
+        const challengePercRounded = challengePerc.toFixed(1);
+        const challengeRemaining = CHALLENGE_DATA.target - CHALLENGE_DATA.raised;
+        const challengeColors = getProgressColors(challengePerc);
+
+        document.getElementById('jd-amount').textContent = formatCurrency(CHALLENGE_DATA.jd);
+        document.getElementById('jj-amount').textContent = formatCurrency(CHALLENGE_DATA.jj);
+        document.getElementById('challenge-raised').textContent = formatCurrency(CHALLENGE_DATA.raised);
+        document.getElementById('challenge-target').textContent = formatCurrency(CHALLENGE_DATA.target);
+        document.getElementById('challenge-remaining-text').innerHTML = `⛭ ${formatCurrency(challengeRemaining)} to go`;
+
+        const challengeBar = document.getElementById('challenge-progress-bar');
+        const challengeBarText = document.getElementById('challenge-progress-text');
+        challengeBar.style.width = `${challengePercRounded}%`;
+        challengeBar.style.background = challengeColors.bg;
+        challengeBar.style.color = challengeColors.text;
+        challengeBarText.textContent = `${challengePercRounded}%`;
+
+        // ----- combined pie chart (all raised funds) -----
+        updatePieChart(FUND_DATA.raised, CHALLENGE_DATA.jd, CHALLENGE_DATA.jj);
+    }
+
+    document.addEventListener('DOMContentLoaded', updateProgress);
 </script>
 </body>
 </html>
