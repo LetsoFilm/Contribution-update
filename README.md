@@ -579,7 +579,7 @@
     // *************************************************************
     const FUND_DATA = {
         target: 64500,                // members pledged target
-        raised: 40000,                // members pledged raised so far
+        raised: 42000,                // members pledged raised so far
         contact: "+27704246429",
         accountNumber: "1021 9863 030",
         reference: "BUILDING FUND",
