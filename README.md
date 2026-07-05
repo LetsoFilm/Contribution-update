@@ -1,4 +1,4 @@
-<html lang="en">
+a<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -589,9 +589,9 @@
     // New data for JJ & JD challenge
     const CHALLENGE_DATA = {
         target: 20000,       // combined target for JJ & JD
-        raised: 18246,        // current combined raised (JD+JJ)
+        raised: 18736,        // current combined raised (JD+JJ)
         jd: 10985,            // JD group raised
-        jj: 7261             // JJ group raised
+        jj: 7751             // JJ group raised
     };
 
     function formatCurrency(amount) {
